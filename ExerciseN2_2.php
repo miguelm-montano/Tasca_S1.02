@@ -6,9 +6,19 @@ La classificació. Sent "Principiant" menor de 4000. "Intermedi" menor de 8000 i
 
 <?php 
 
+function points($pointsA, $pointsB, $pointsC) {
+
+    if(($pointsA < 0 || $pointsA > 9999) || ($pointsB < 0 || $pointsB > 9999) || ($pointsC < 0 || $pointsC > 9999)) {
+
+        return false;     
+  }      
+
+        return true;
+}
+
 function sumPoints($firstPoints, $secondPoints, $thirdPoints) {
 
-    if(($firstPoints > 9999 || $firstPoints < 0) || ($secondPoints > 9999 || $secondPoints < 0) || ($thirdPoints > 9999 || $thirdPoints < 0)) {
+    if(!points($firstPoints, $secondPoints, $thirdPoints)) {
         echo "Error. Incorrent Points.";
         return;
     } 
@@ -17,20 +27,20 @@ function sumPoints($firstPoints, $secondPoints, $thirdPoints) {
 
 function mediaPoints($firstPoints, $secondPoints, $thirdPoints) {
 
-    if(($firstPoints > 9999 || $firstPoints < 0) || ($secondPoints > 9999 || $secondPoints < 0) || ($thirdPoints > 9999 || $thirdPoints < 0)) {
+    if(!points($firstPoints, $secondPoints, $thirdPoints)) {
         echo "Error. Incorrent Points.";
         return;
-    }
+    } 
 
     return sumPoints($firstPoints, $secondPoints, $thirdPoints) / 3;
 }
 
 function pointsClassification($firstPoints, $secondPoints, $thirdPoints) {
     
-    if(($firstPoints > 9999 || $firstPoints < 0) || ($secondPoints > 9999 || $secondPoints < 0) || ($thirdPoints > 9999 || $thirdPoints < 0)) {
+   if(!points($firstPoints, $secondPoints, $thirdPoints)) {
         echo "Error. Incorrent Points.";
         return;
-    }
+    } 
 
     $totalPoints = sumPoints($firstPoints, $secondPoints, $thirdPoints);
 
