@@ -1,72 +1,65 @@
-/*Imagina que estàs programant part de la lògica de la classificació de punts d'un joc. En aquest programa necessitem entrar 3 puntuacions diferents(les puntuacions són entre 0 i 9999). D'aquestes puntuacions necessitarem: <br>
-
-La seva suma <br>
-La seva mitjana <br>
-La classificació. Sent "Principiant" menor de 4000. "Intermedi" menor de 8000 i "Professional" la resta.*/ <br>
-
 <?php 
+/*Imagina que estàs programant part de la lògica de la classificació de punts d'un joc. En aquest programa necessitem entrar 3 puntuacions diferents(les puntuacions són entre 0 i 9999). D'aquestes puntuacions necessitarem:
 
-function points($pointsA, $pointsB, $pointsC) {
+La seva suma
+La seva mitjana
+La classificació. Sent "Principiant" menor de 4000. "Intermedi" menor de 8000 i "Professional" la resta.*/
 
-    if(($pointsA < 0 || $pointsA > 9999) || ($pointsB < 0 || $pointsB > 9999) || ($pointsC < 0 || $pointsC > 9999)) {
+function validatePoints(array $points): bool {
 
-        return false;     
-  }      
-
-        return true;
+    foreach ($points as $p) {
+        if ($p < 0 || $p > 9999) return false;
+    }
+    return true;
 }
 
-function sumPoints($firstPoints, $secondPoints, $thirdPoints) {
+function sumPoints(array $points): int {
 
-    if(!points($firstPoints, $secondPoints, $thirdPoints)) {
+    if(!validatePoints($points)) {
         echo "Error. Incorrent Points.";
-        return;
+        return 0;
     } 
-        return $firstPoints + $secondPoints + $thirdPoints;
+        return array_sum($points);
 }
 
-function mediaPoints($firstPoints, $secondPoints, $thirdPoints) {
+function calculateAverage(array $points): float {
 
-    if(!points($firstPoints, $secondPoints, $thirdPoints)) {
+     if(!validatePoints($points)) {
         echo "Error. Incorrent Points.";
-        return;
+        return 0.0;
     } 
-
-    return sumPoints($firstPoints, $secondPoints, $thirdPoints) / 3;
+       
+    return sumPoints($points) / count($points);
 }
 
-function pointsClassification($firstPoints, $secondPoints, $thirdPoints) {
+function pointsClassification(array $points): void {
     
-   if(!points($firstPoints, $secondPoints, $thirdPoints)) {
+   if(!validatePoints($points)) {
         echo "Error. Incorrent Points.";
         return;
     } 
 
-    $totalPoints = sumPoints($firstPoints, $secondPoints, $thirdPoints);
+    $totalPoints = sumPoints($points);
 
     if($totalPoints>= 8000){
-        echo "Professional classification";
+        echo "Professional classification\n";
     } elseif($totalPoints >= 4000){
-        echo "Intermediant classification";
+        echo "Intermediant classification\n";
     } else {
-        echo "Principiant classification";
+        echo "Principiant classification\n";
     }
 
 }
 
-echo "<br>";
+$game1 = [400, 1000, 200];
+$game2 = [4000, 1000, 3000];
 
-echo sumPoints(400, 1000, 10000) . "<br>";
+echo "Sum game1: " . sumPoints($game1) . PHP_EOL;
+echo "Average game1: " . calculateAverage($game1) . PHP_EOL;
+pointsClassification($game1);
 
-echo sumPoints(400, 1000, 200) . "<br>";
-
-echo mediaPoints(400, 1000, 200) . "<br>";
-
-echo pointsClassification(400, 1000, 200) . "<br>";
-
-echo pointsClassification(4000, 1000, 3000) . "<br>";
-
-echo pointsClassification(4000, 1000, 1000) . "<br>";
+echo "Sum game2: " . sumPoints($game2) . PHP_EOL;
+pointsClassification($game2);
 
 
 ?>

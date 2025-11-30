@@ -1,3 +1,4 @@
+<?php
 /* Escriure una funció per verificar el grau d'un/a estudiant d'acord amb la nota.
 
 Condicions:
@@ -5,11 +6,9 @@ Condicions:
 Si la nota és 60% o més, el grau hauria de ser Primera Divisió.
 Si la nota està entre 45% i 59%, el grau hauria de ser Segona Divisió.
 Si la nota està entre 33% to 44%, el grau hauria de ser Tercera Divisió.
-Si la nota és menor a 33%, l'estudiant reprovarà.*/<br>
+Si la nota és menor a 33%, l'estudiant reprovarà.*/
 
-<?php
-
-function studentFinal($finalNote) {
+function assignStudentGrade(int $finalNote): void {
     if($finalNote < 0 || $finalNote > 100) {
         echo "The note entered is invalid.";
     }elseif($finalNote >= 60) {
@@ -24,20 +23,20 @@ function studentFinal($finalNote) {
     
 }
 
-echo "Student A" . "<br> ";
-studentFinal(90) . "<br>";
+echo "Student A" . PHP_EOL;
+assignStudentGrade(90);
+echo PHP_EOL;
 
-echo "<br>";
-echo "Student B" . "<br> ";
-studentFinal(55) . "<br>";
+echo "Student B" . PHP_EOL;
+assignStudentGrade(55);
+echo PHP_EOL;
 
-echo "<br>";
-echo "Student C" . "<br> ";
-studentFinal(44) . "<br>";
+echo "Student C" . PHP_EOL;
+assignStudentGrade(44);
+echo PHP_EOL;
 
-echo "<br>";
-echo "Student D" . "<br> ";
-studentFinal(20) . "<br>";
-
+echo "Student D" . PHP_EOL;
+assignStudentGrade(20);
+echo PHP_EOL;
 
 ?>
